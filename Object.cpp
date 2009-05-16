@@ -12,7 +12,7 @@ bool Object::IsNull () const
     { return false; }
 
 int Object::Compare (Object const& object) const
-{
+{std::cout << 'a';
     if (typeid (*this) == typeid (object))
     	return CompareTo (object);
     else if (typeid (*this).before (typeid (object)))
