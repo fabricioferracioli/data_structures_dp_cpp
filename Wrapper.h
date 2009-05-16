@@ -25,10 +25,6 @@ public:
     operator T const& () const;
     HashValue Hash () const;
     void Put (std::ostream&) const;
-    typedef Wrapper<int> Int;
-    typedef Wrapper<char> Char;
-    typedef Wrapper<double> Double;
-    typedef Wrapper<std::string> String;
 };
 
 #endif /* WRAPPER_H_ */

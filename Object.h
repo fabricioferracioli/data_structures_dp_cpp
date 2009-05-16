@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <typeinfo>
+#include "MyHash.h"
 
 class Object {
 protected:
@@ -20,26 +21,7 @@ public:
     virtual int Compare (Object const&) const;
     virtual HashValue Hash () const = 0;
     virtual void Put (std::ostream&) const = 0;
-    inline bool operator == (Object const& left, Object const& right)
-        { return left.Compare (right) == 0; }
-
-    inline bool operator != (Object const& left, Object const& right)
-        { return left.Compare (right) != 0; }
-
-    inline bool operator <= (Object const& left, Object const& right)
-        { return left.Compare (right) <= 0; }
-
-    inline bool operator <  (Object const& left, Object const& right)
-        { return left.Compare (right) <  0; }
-
-    inline bool operator >= (Object const& left, Object const& right)
-        { return left.Compare (right) >= 0; }
-
-    inline bool operator >  (Object const& left, Object const& right)
-        { return left.Compare (right) >  0; }
-
-    inline std::ostream& operator << (std::ostream& s, Object const& object)
-        { object.Put (s); return s; }
 };
 
 #endif /* OBJECT_H_ */
+
