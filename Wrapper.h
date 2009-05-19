@@ -4,44 +4,15 @@
  *  Created on: May 14, 2009
  *      Author: fabricio
  */
-int Compare(int a, int b)
+template <class T>
+int Compare(T a, T b)
 {
-	if (a == b)
-		return 0;
-	else if (a > b)
-		return 1;
-	else
-		return -1;
-}
-
-int Compare(char a, char b)
-{
-	if (a == b)
-		return 0;
-	else if (a > b)
-		return 1;
-	else
-		return -1;
-}
-
-int Compare(double a, double b)
-{
-	if (a == b)
-		return 0;
-	else if (a > b)
-		return 1;
-	else
-		return -1;
-}
-
-int Compare(std::string a, std::string b)
-{
-	if (a == b)
-		return 0;
-	else if (a > b)
-		return 1;
-	else
-		return -1;
+    if (a == b)
+        return 0;
+    else if (a > b)
+        return 1;
+    else
+        return -1;
 }
 
 #ifndef WRAPPER_H_

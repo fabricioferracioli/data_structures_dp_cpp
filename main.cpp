@@ -77,7 +77,7 @@ void ex1()
 
 void ex2()
 {
-	std::cout << "Exercicio 01" << std::endl;
+	std::cout << "Exercicio 02" << std::endl;
 }
 
 int main()
