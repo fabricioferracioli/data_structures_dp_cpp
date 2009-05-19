@@ -1,3 +1,5 @@
+//Container version
+
 virtual bool SearchableContainer::IsMember (Object const& obj) const
 {
 	if Find(obj) != NullObject
@@ -12,5 +14,26 @@ virtual SearchableContainer::Object& Find (Object const& obj) const
 		if obj == ContainerObject
 			found = CointainerObject
 			break
+	return found
+}
+
+//Iterator version
+virtual bool SearchableContainer::IsMember (Object const& obj) const
+{
+	if Find(obj) != NullObject
+		return true
+	return false
+}
+
+virtual SearchableContainer::Object& Find (Object const& obj) const
+{
+	found = NullObject
+	Iterator& i = NewIterator ()
+	while (!i.IsDone ()) {
+	    if i == obj 
+	    	found = i
+    	++i
+	}
+	delete &i;	
 	return found
 }
