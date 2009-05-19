@@ -1,0 +1,16 @@
+virtual bool SearchableContainer::IsMember (Object const& obj) const
+{
+	if Find(obj) != NullObject
+		return true
+	return false
+}
+
+virtual SearchableContainer::Object& Find (Object const& obj) const
+{
+	found = NullObject
+	for each object in Container
+		if obj == ContainerObject
+			found = CointainerObject
+			break
+	return found
+}
