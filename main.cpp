@@ -78,11 +78,19 @@ void ex1()
 void ex2()
 {
 	std::cout << "Exercicio 02" << std::endl;
+	std::cout << "Verifique arquivo SearchableContainer.txt" << std::endl;
+}
+
+void ex3()
+{
+	std::cout << "Exercicio 03" << std::endl;
+	std::cout << "Verifique arquivo SearchableContainer.txt" << std::endl;
 }
 
 int main()
 {
 	ex1();
 	ex2();
+	ex3();
 	return 0;
 }
