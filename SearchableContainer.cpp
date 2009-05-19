@@ -8,6 +8,9 @@
 #include "SearchableContainer.h"
 
 
+SearchableContainer::SearchableContainer(int size) : count(size)
+{}
+
 bool SearchableContainer::IsMember(Object const & obj) const
 {
 	return false;

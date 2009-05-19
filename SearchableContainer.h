@@ -13,6 +13,8 @@
 class SearchableContainer : public virtual Container
 {
 public:
+	SearchableContainer();
+	SearchableContainer(int);
     virtual bool IsMember (Object const&) const = 0;
     virtual void Insert (Object&) = 0;
     virtual void Withdraw (Object&) = 0;

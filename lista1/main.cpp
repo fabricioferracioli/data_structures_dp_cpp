@@ -18,7 +18,7 @@
 #include "ColumnVector.h"
 #include <iostream>
 
-void ex1(){
+void l1ex1(){
 	std::cout << "Exercicio 01" << std::endl << std::endl;
 
 	//construtor default, tudo inicializado com 0
@@ -91,7 +91,7 @@ void ex1(){
 	std::cout << std::endl << std::endl;
 }
 
-void ex2()
+void l1ex2()
 {
 	std::cout << "Exercicio 02" << std::endl << std::endl;
 
@@ -144,7 +144,7 @@ void ex2()
     std::cout << std::endl << std::endl;
 }
 
-void ex3()
+void l1ex3()
 {
 
     std::cout << "Exercicio 03" << std::endl << std::endl;
@@ -202,7 +202,7 @@ void ex3()
 
 }
 
-void ex4()
+void l1ex4()
 {
 
     std::cout << "Exercicio 04" << std::endl << std::endl;
@@ -270,7 +270,7 @@ void ex4()
 
 }
 
-void ex5()
+void l1ex5()
 {
 	std::cout << "Exercicio 05" << std::endl << std::endl;
 
@@ -339,47 +339,47 @@ void ex5()
 //	std::cout << std::endl << std::endl;
 //}
 
-void ex7()
+void l1ex7()
 {
 	std::cout << "Exercicio 07" << std::endl << std::endl;
 
 	RowVector<int> row(5);
 	for (unsigned int i = 0; i < 5; i++)
 	{
-		row[0][i] = 4 * i;
+		row[i] = 4 * i;
 	}
 	for (unsigned int i = 0; i < 5; i++)
 	{
-		std::cout << "Row[0][" << i << "] " << row[0][i] << std::endl;
+		std::cout << "Row[0][" << i << "] " << row[i] << std::endl;
 	}
 
 	ColumnVector<int> column(5);
 	for (unsigned int i = 0; i < 5; i++)
 	{
-		column[i][0] = 23 * i;
+		column[i] = 23 * i;
 	}
 	for (unsigned int i = 0; i < 5; i++)
 	{
-		std::cout << "Column[" << i << "][0] " << column[i][0] << std::endl;
+		std::cout << "Column[" << i << "][0] " << column[i] << std::endl;
 	}
 }
 
-int main()
-{
-
-    ex1();
-
-    ex2();
-
-    ex3();
-
-    ex4();
-
-    ex5();
-
-//    ex6();
-
-    ex7();
-
-    return 0;
-}
+//int main()
+//{
+//
+//    ex1();
+//
+//    ex2();
+//
+//    ex3();
+//
+//    ex4();
+//
+//    ex5();
+//
+////    ex6();
+//
+//    ex7();
+//
+//    return 0;
+//}
