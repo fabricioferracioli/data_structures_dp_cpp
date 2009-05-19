@@ -5,7 +5,7 @@
  *      Author: fabricio
  */
 int Compare(int a, int b)
-{ std::cout <<a << ' ' << b << std::endl;
+{
 	if (a == b)
 		return 0;
 	else if (a > b)
