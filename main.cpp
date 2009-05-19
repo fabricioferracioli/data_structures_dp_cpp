@@ -71,10 +71,18 @@ void ex1()
 		std::cout << "g = h" << std::endl;
 	else
 		std::cout << "g != h" << std::endl;
+
+	std::cout << std::endl;
+}
+
+void ex2()
+{
+	std::cout << "Exercicio 01" << std::endl;
 }
 
 int main()
 {
 	ex1();
+	ex2();
 	return 0;
 }
