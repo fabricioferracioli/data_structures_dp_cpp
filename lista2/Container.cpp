@@ -6,8 +6,6 @@
  */
 
 #include "Container.h"
-#include "NullIterator.h"
-#include "PuttingVisitor.h"
 
 Container::Container() : count(0)
 {}
@@ -25,6 +23,11 @@ bool Container::IsEmpty() const
 bool Container::IsFull() const
 {
 	return false;
+}
+
+HashValue Container::Hash() const
+{
+	return 0;
 }
 
 Iterator& Container::NewIterator () const

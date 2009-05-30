@@ -12,6 +12,8 @@
 #include "Ownership.h"
 #include "Iterator.h"
 #include "Visitor.h"
+#include "NullIterator.h"
+#include "PuttingVisitor.h"
 #include <typeinfo>
 
 class Container : public virtual Object, public virtual Ownership
