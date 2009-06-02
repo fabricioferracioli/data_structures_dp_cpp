@@ -510,6 +510,61 @@ void RPNCalculator (Stack& stack)
     }
 }
 
+void polish(Stack& stack)
+{
+	char c;
+	while (std::cin >> c, !std::cin.eof ())
+	{
+		if (!std::isdigit(c))
+		{
+			switch (c)
+			{
+				case '+':
+				case '-':
+				case '*':
+				case '/':
+				case '^':
+				case '~':
+					stack.Push(*new Char(c));
+					break;
+				case '=':
+					break;
+			}
+		}
+		else
+		{
+			if (std::isdigit(dynamic_cast<char> (stack.Top())))
+			{
+				Double& arg1 = dynamic_cast<Double&> (stack.Pop());
+				char operand = dynamic_cast<char> (stack.Pop());
+				switch (operand)
+				{
+					case '+':
+						stack.Push (*new Double (arg1 + c));
+						break;
+					case '-':
+						stack.Push (*new Double (arg1 - c));
+					case '*':
+						stack.Push (*new Double (arg1 * c));
+					case '/':
+						stack.Push (*new Double (arg1 / c));
+					case '^':
+						stack.Push (*new Double (pow(arg1, c)));
+					case '~':
+						stack.Push(*new Char(-c));
+						break;
+					case '=':
+						break;
+				}
+
+
+				delete &arg1;
+				delete &arg2;
+			}
+		}
+	}
+}
+
 
 void lista1()
 {
