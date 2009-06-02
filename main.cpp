@@ -8,7 +8,12 @@
 #include "lista1/RowVector.h"
 #include "lista1/ColumnVector.h"
 #include "lista2/Wrapper.h"
+#include "lista3/Stack.h"
+#include "lista3/StackAsArray.h"
+#include "lista3/StackAsLinkedList.h"
+
 #include <iostream>
+#include <math.h>
 
 typedef Wrapper<int> Int;
 typedef Wrapper<char> Char;
@@ -443,6 +448,69 @@ void l2ex3()
 	std::cout << "Verifique arquivo SearchableContainer.txt" << std::endl;
 }
 
+void RPNCalculator (Stack& stack)
+{
+    char c;
+    while (std::cin >> c, !std::cin.eof ())
+    {
+		if (std::isdigit (c))
+			stack.Push (*new Double (c - '0'));
+		else if (c == '+')
+		{
+			Double& arg2 = dynamic_cast<Double&> (stack.Pop ());
+			Double& arg1 = dynamic_cast<Double&> (stack.Pop ());
+			stack.Push (*new Double (arg1 + arg2));
+			delete &arg1;
+			delete &arg2;
+		}
+		else if (c == '*')
+		{
+			Double& arg2 = dynamic_cast<Double&> (stack.Pop ());
+			Double& arg1 = dynamic_cast<Double&> (stack.Pop ());
+			stack.Push (*new Double (arg1 * arg2));
+			delete &arg1;
+			delete &arg2;
+		}
+		else if (c == '-')
+		{
+			Double& arg2 = dynamic_cast<Double&> (stack.Pop ());
+			Double& arg1 = dynamic_cast<Double&> (stack.Pop ());
+			stack.Push (*new Double (arg1 - arg2));
+			delete &arg1;
+			delete &arg2;
+		}
+		else if (c == '/')
+		{
+			Double& arg2 = dynamic_cast<Double&> (stack.Pop ());
+			Double& arg1 = dynamic_cast<Double&> (stack.Pop ());
+			stack.Push (*new Double (arg1 / arg2));
+			delete &arg1;
+			delete &arg2;
+		}
+		else if (c == '^')
+		{
+			Double& arg2 = dynamic_cast<Double&> (stack.Pop ());
+			Double& arg1 = dynamic_cast<Double&> (stack.Pop ());
+			stack.Push (*new Double (pow(arg1, arg2)));
+			delete &arg1;
+			delete &arg2;
+		}
+		else if (c == '~')
+		{
+			Double& arg1 = dynamic_cast<Double&> (stack.Pop ());
+			stack.Push(*new Double (-arg1));
+			delete &arg1;
+		}
+		else if (c == '=')
+		{
+			Double& arg = dynamic_cast<Double&> (stack.Pop ());
+			std::cout << arg << std::endl;
+			delete &arg;
+		}
+    }
+}
+
+
 void lista1()
 {
 	std::cout << "Lista de exercicios 01" << std::endl;
@@ -465,8 +533,10 @@ void lista2()
 
 int main()
 {
-	lista1();
-	lista2();
+//	lista1();
+//	lista2();
+	StackAsLinkedList p;
+	RPNCalculator(p);
 	return 0;
 }
 

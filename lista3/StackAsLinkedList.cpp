@@ -101,3 +101,8 @@ void StackAsLinkedList::Iter::Reset ()
 {
 	position = stack.list.Head ();
 }
+
+int StackAsLinkedList::CompareTo(const Object& obj) const
+{
+	return 0;
+}

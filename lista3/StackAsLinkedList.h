@@ -24,6 +24,7 @@ class StackAsLinkedList : public Stack
 		Object& Pop ();
 		Object& Top () const;
 		void Accept (Visitor&) const;
+		virtual int CompareTo(const Object&) const;
 		~StackAsLinkedList ();
 		friend class Iter;
 };
