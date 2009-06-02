@@ -528,39 +528,50 @@ void polish(Stack& stack)
 					stack.Push(*new Char(c));
 					break;
 				case '=':
+					Char& arg = dynamic_cast<Char&> (stack.Pop ());
+					std::cout << arg << std::endl;
+					delete &arg;
 					break;
 			}
 		}
 		else
 		{
-			if (std::isdigit(dynamic_cast<char> (stack.Top())))
+			Char& arg1 = dynamic_cast<Char&> (stack.Top());
+
+			if (std::isdigit(arg1))
 			{
-				Double& arg1 = dynamic_cast<Double&> (stack.Pop());
-				char operand = dynamic_cast<char> (stack.Pop());
-				switch (operand)
+				stack.Pop();
+
+				Char& Operator = dynamic_cast<Char&> (stack.Pop());
+				std::cout << Operator << std::endl;
+
+				switch (Operator)
 				{
 					case '+':
-						stack.Push (*new Double (arg1 + c));
+						stack.Push (*new Char (arg1 + c));
 						break;
 					case '-':
-						stack.Push (*new Double (arg1 - c));
+						stack.Push (*new Char (arg1 - c));
+						break;
 					case '*':
-						stack.Push (*new Double (arg1 * c));
+						stack.Push (*new Char (arg1 * c));
+						break;
 					case '/':
-						stack.Push (*new Double (arg1 / c));
+						stack.Push (*new Char (arg1 / c));
+						break;
 					case '^':
-						stack.Push (*new Double (pow(arg1, c)));
+						stack.Push (*new Char (pow(arg1, c)));
+						break;
 					case '~':
 						stack.Push(*new Char(-c));
 						break;
-					case '=':
-						break;
 				}
-
-
-				delete &arg1;
-				delete &arg2;
 			}
+			else
+			{
+				stack.Push(*new Char (c));
+			}
+			delete &arg1;
 		}
 	}
 }
@@ -591,7 +602,8 @@ int main()
 //	lista1();
 //	lista2();
 	StackAsLinkedList p;
-	RPNCalculator(p);
+	polish(p);
+
 	return 0;
 }
 
