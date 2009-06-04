@@ -1,5 +1,8 @@
-//Container version
+Os exercícios 2, 3 e 4 dizem para supor métodos da classe abstrata SearchableContainer.
+Por se tratar de uma classe abstrata, os métodos não podem ser implementados.
+Devido a isso, a idéia dos métodos foi implementada em pseudocódigo.
 
+//Container version - exercicio 02
 virtual bool SearchableContainer::IsMember (Object const& obj) const
 {
 	if Find(obj) != NullObject
@@ -7,7 +10,7 @@ virtual bool SearchableContainer::IsMember (Object const& obj) const
 	return false
 }
 
-virtual SearchableContainer::Object& Find (Object const& obj) const
+virtual Object& SearchableContainer::Find (Object const& obj) const
 {
 	found = NullObject
 	for each object in Container
@@ -17,7 +20,7 @@ virtual SearchableContainer::Object& Find (Object const& obj) const
 	return found
 }
 
-//Iterator version
+//Iterator version - exercicio 03
 virtual bool SearchableContainer::IsMember (Object const& obj) const
 {
 	if Find(obj) != NullObject
@@ -25,7 +28,7 @@ virtual bool SearchableContainer::IsMember (Object const& obj) const
 	return false
 }
 
-virtual SearchableContainer::Object& Find (Object const& obj) const
+virtual Object& SearchableContainer::Find (Object const& obj) const
 {
 	found = NullObject
 	Iterator& i = NewIterator ()
@@ -36,4 +39,15 @@ virtual SearchableContainer::Object& Find (Object const& obj) const
 	}
 	delete &i;	
 	return found
+}
+
+//Exercicio 04
+virtual void SearchableContainer::TransferToAnotherContainer(Visitor visitor, Container container)
+{
+	Accept(visitor);
+	while (!visitor.IsDone())
+	{
+		container.Insert(visitor.getContainerObject())
+	}
+	Purge();
 }

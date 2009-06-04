@@ -10,6 +10,7 @@
 
 #include "Container.h"
 #include "MatchingVisitor.h"
+#include "NullObject.h"
 
 class SearchableContainer : public virtual Container
 {
