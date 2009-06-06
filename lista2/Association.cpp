@@ -54,3 +54,8 @@ void Association::Put (std::ostream& s) const
     }
     s << "}";
 }
+
+HashValue Association::Hash() const
+{
+	return 0;
+}

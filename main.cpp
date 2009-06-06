@@ -8,6 +8,10 @@
 #include "lista1/RowVector.h"
 #include "lista1/ColumnVector.h"
 #include "lista2/Wrapper.h"
+#include "lista2/BagAsArray.h"
+#include "lista2/BagAsLinkedList.h"
+#include "lista2/Association.h"
+#include "lista2/Enumeration.h"
 #include "lista3/Stack.h"
 #include "lista3/StackAsArray.h"
 #include "lista3/StackAsLinkedList.h"
@@ -440,12 +444,137 @@ void l2ex2()
 {
 	std::cout << "Exercicio 02" << std::endl;
 	std::cout << "Verifique arquivo SearchableContainer.txt" << std::endl;
+	std::cout << std::endl;
 }
 
 void l2ex3()
 {
 	std::cout << "Exercicio 03" << std::endl;
 	std::cout << "Verifique arquivo SearchableContainer.txt" << std::endl;
+	std::cout << std::endl;
+}
+
+void l2ex4()
+{
+	std::cout << "Exercicio 04" << std::endl;
+	std::cout << "Verifique arquivo SearchableContainer.txt" << std::endl;
+	std::cout << std::endl;
+}
+
+void l2ex5()
+{
+	std::cout << "Exercicio 05" << std::endl;
+
+	BagAsArray bag(5);
+
+	bag.Insert (*new Int (3));
+	bag.Insert (*new Int (1));
+	bag.Insert (*new Int (4));
+	bag.Insert (*new Int (7));
+	bag.Insert (*new Int (6));
+
+	Iterator& i = bag.NewIterator ();
+	while (!i.IsDone ())
+	{
+		std::cout << *i << " ";
+		++i;
+	}
+	std::cout << std::endl;
+	delete &i;
+
+	bag.Withdraw(*new Int (7));
+
+	std::cout << bag.Find (*new Int(7)) << std::endl;
+	std::cout << bag.Find (*new Int(6)) << std::endl;
+	std::cout << bag.IsMember (*new Int(7)) << std::endl;
+	std::cout << bag.IsMember (*new Int(6)) << std::endl;
+
+	std::cout << std::endl;
+}
+
+void l2ex6()
+{
+	std::cout << "Exercicio 06" << std::endl;
+
+    BagAsLinkedList bag;
+
+    bag.Insert (*new Int (1));
+    bag.Insert (*new Int (2));
+    bag.Insert (*new Int (3));
+    bag.Insert (*new Int (4));
+    bag.Insert (*new Int (5));
+
+    Int num(6);
+    bag.Insert (num);
+
+    Iterator& i = bag.NewIterator ();
+    while (!i.IsDone ())
+    {
+        std::cout << *i << " ";
+        ++i;
+    }
+    std::cout<< std::endl;
+    delete &i;
+
+    bag.Withdraw(num);
+
+	std::cout << bag.Find (*new Int(5)) << std::endl;
+	std::cout << bag.Find (*new Int(6)) << std::endl;
+	std::cout << bag.IsMember (*new Int(5)) << std::endl;
+	std::cout << bag.IsMember (*new Int(6)) << std::endl;
+
+	std::cout << std::endl;
+}
+
+void l2ex7()
+{
+	std::cout << "Exercicio 07" << std::endl;
+
+    Association a(*new Int(2), *new Int(2));
+    Association b(*new Int(3), *new Int(3));
+
+    std::cout << a << std::endl;
+    std::cout << b << std::endl;
+
+    if(a == b)
+        std::cout << "Associacoes (a,b) Iguais" << std::endl;
+    else
+        std::cout << "Associacoes (a,b) Diferentes" << std::endl;
+
+    Association c(*new Int(5), *new Int(42));
+	Association d(*new Int(5), *new Int(31));
+
+	std::cout << c << std::endl;
+	std::cout << d << std::endl;
+
+	if(c == c)
+		std::cout << "Associacoes (c,d) Iguais" << std::endl;
+	else
+		std::cout << "Associacoes (c,d) Diferentes" << std::endl;
+
+    std::cout << std::endl;
+}
+
+void l2ex8()
+{
+	std::cout << "Exercicio 08" << std::endl;
+
+    BagAsArray bag(5);
+
+    bag.Insert (*new Int (10));
+    bag.Insert (*new Int (9));
+    bag.Insert (*new Int (8));
+    bag.Insert (*new Int (7));
+    bag.Insert (*new Int (6));
+
+    Enumeration e(bag);
+
+    while (e.hasMoreElements())
+    {
+        std::cout << e.nextElement() << std::endl;
+    }
+
+    std::cout << std::endl;
 }
 
 void RPNCalculator (Stack& stack)
@@ -595,14 +724,19 @@ void lista2()
 	l2ex1();
 	l2ex2();
 	l2ex3();
+	l2ex4();
+	l2ex5();
+	l2ex6();
+	l2ex7();
+	l2ex8();
 }
 
 int main()
 {
 //	lista1();
-//	lista2();
-	StackAsLinkedList p;
-	polish(p);
+	lista2();
+//	StackAsLinkedList p;
+//	polish(p);
 
 	return 0;
 }

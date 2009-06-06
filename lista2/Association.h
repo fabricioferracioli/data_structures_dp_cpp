@@ -29,6 +29,7 @@ class Association : public Object, public Ownership
         Object& Value () const;
 
         void Put (std::ostream&) const;
+        HashValue Hash () const;
 };
 
 #endif /* ASSOCIATION_H_ */
