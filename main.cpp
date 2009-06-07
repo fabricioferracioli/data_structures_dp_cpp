@@ -18,6 +18,7 @@
 
 #include <iostream>
 #include <math.h>
+#include <string.h>
 
 typedef Wrapper<int> Int;
 typedef Wrapper<char> Char;
@@ -577,14 +578,29 @@ void l2ex8()
     std::cout << std::endl;
 }
 
+bool isNumber(char str[], unsigned int size)
+{
+	for (unsigned int i = 0; i < size; i++)
+	{
+		if (!std::isdigit(str[i]))
+		{
+			return false;
+		}
+		else if (str[i] == '\0')
+		{
+			return true;
+		}
+	}
+}
+
 void RPNCalculator (Stack& stack)
 {
-    char c;
+	unsigned int size = 10;
+    char c[size];
+
     while (std::cin >> c, !std::cin.eof ())
     {
-		if (std::isdigit (c))
-			stack.Push (*new Double (c - '0'));
-		else if (c == '+')
+		if (strcmp(c, "+") == 0)
 		{
 			Double& arg2 = dynamic_cast<Double&> (stack.Pop ());
 			Double& arg1 = dynamic_cast<Double&> (stack.Pop ());
@@ -592,7 +608,7 @@ void RPNCalculator (Stack& stack)
 			delete &arg1;
 			delete &arg2;
 		}
-		else if (c == '*')
+		else if (strcmp(c, "*") == 0)
 		{
 			Double& arg2 = dynamic_cast<Double&> (stack.Pop ());
 			Double& arg1 = dynamic_cast<Double&> (stack.Pop ());
@@ -600,7 +616,7 @@ void RPNCalculator (Stack& stack)
 			delete &arg1;
 			delete &arg2;
 		}
-		else if (c == '-')
+		else if (strcmp(c, "-") == 0)
 		{
 			Double& arg2 = dynamic_cast<Double&> (stack.Pop ());
 			Double& arg1 = dynamic_cast<Double&> (stack.Pop ());
@@ -608,7 +624,7 @@ void RPNCalculator (Stack& stack)
 			delete &arg1;
 			delete &arg2;
 		}
-		else if (c == '/')
+		else if (strcmp(c, "/") == 0)
 		{
 			Double& arg2 = dynamic_cast<Double&> (stack.Pop ());
 			Double& arg1 = dynamic_cast<Double&> (stack.Pop ());
@@ -616,7 +632,7 @@ void RPNCalculator (Stack& stack)
 			delete &arg1;
 			delete &arg2;
 		}
-		else if (c == '^')
+		else if (strcmp(c, "^") == 0)
 		{
 			Double& arg2 = dynamic_cast<Double&> (stack.Pop ());
 			Double& arg1 = dynamic_cast<Double&> (stack.Pop ());
@@ -624,17 +640,38 @@ void RPNCalculator (Stack& stack)
 			delete &arg1;
 			delete &arg2;
 		}
-		else if (c == '~')
+		else if (strcmp(c, "~") == 0)
 		{
 			Double& arg1 = dynamic_cast<Double&> (stack.Pop ());
 			stack.Push(*new Double (-arg1));
 			delete &arg1;
 		}
-		else if (c == '=')
+		else if (strcmp(c, "=") == 0)
 		{
 			Double& arg = dynamic_cast<Double&> (stack.Pop ());
 			std::cout << arg << std::endl;
 			delete &arg;
+		}
+		else if(strcmp(c, "c") == 0)
+		{
+			std::cout << "Limpando o conteudo da pilha" << std::endl;
+			stack.Purge();
+		}
+		else if(strcmp(c, "p") == 0)
+		{
+			std::cout << "Conteudo da pilha" << std::endl;
+			Iterator& i = stack.NewIterator ();
+			while (!i.IsDone ())
+			{
+				std::cout << *i << " ";
+				++i;
+			}
+			std::cout<< std::endl;
+			delete &i;
+		}
+		else/* (isNumber(c, size))*/
+		{
+			stack.Push (*new Double (atof(c)));
 		}
     }
 }
@@ -733,10 +770,11 @@ void lista2()
 
 int main()
 {
+	std::cout << "Main" << std::endl;
 //	lista1();
-	lista2();
-//	StackAsLinkedList p;
-//	polish(p);
+//	lista2();
+	StackAsLinkedList p;
+	RPNCalculator(p);
 
 	return 0;
 }

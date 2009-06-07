@@ -27,6 +27,8 @@ class StackAsLinkedList : public Stack
 		virtual int CompareTo(const Object&) const;
 		~StackAsLinkedList ();
 		friend class Iter;
+
+		Iterator& NewIterator () const;
 };
 
 class StackAsLinkedList::Iter : public Iterator

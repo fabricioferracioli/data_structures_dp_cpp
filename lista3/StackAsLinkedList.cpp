@@ -67,6 +67,11 @@ void StackAsLinkedList::Accept (Visitor& visitor) const
     }
 }
 
+Iterator& StackAsLinkedList::NewIterator () const
+{
+    return *new Iter(*this);
+}
+
 StackAsLinkedList::Iter::Iter (StackAsLinkedList const& _stack) : stack (_stack)
 {
 	Reset ();
