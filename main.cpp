@@ -595,6 +595,7 @@ bool isNumber(char str[], unsigned int size)
 
 void RPNCalculator (Stack& stack)
 {
+	std::cout << "Exercicio 01" << std::endl;
 	unsigned int size = 10;
     char c[size];
 
@@ -674,6 +675,7 @@ void RPNCalculator (Stack& stack)
 			stack.Push (*new Double (atof(c)));
 		}
     }
+    std::cout << std::endl;
 }
 
 void polish(Stack& stack)
@@ -695,7 +697,8 @@ void polish(Stack& stack)
 					break;
 				case '=':
 					Char& arg = dynamic_cast<Char&> (stack.Pop ());
-					std::cout << arg << std::endl;
+					char c = arg;
+					std::cout << atof(c) << std::endl;
 					delete &arg;
 					break;
 			}
@@ -709,7 +712,6 @@ void polish(Stack& stack)
 				stack.Pop();
 
 				Char& Operator = dynamic_cast<Char&> (stack.Pop());
-				std::cout << Operator << std::endl;
 
 				switch (Operator)
 				{
@@ -737,7 +739,7 @@ void polish(Stack& stack)
 			{
 				stack.Push(*new Char (c));
 			}
-			delete &arg1;
+
 		}
 	}
 }
@@ -768,13 +770,22 @@ void lista2()
 	l2ex8();
 }
 
+void lista3()
+{
+	std::cout << "Lista de exercicios 03" << std::endl;
+	//exercicio 1, mantido o nome da funcao contida no livro
+	StackAsLinkedList p;
+	RPNCalculator(p);
+}
+
 int main()
 {
 	std::cout << "Main" << std::endl;
 //	lista1();
 //	lista2();
+//	lista3();
 	StackAsLinkedList p;
-	RPNCalculator(p);
+	polish(p);
 
 	return 0;
 }
