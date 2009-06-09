@@ -19,6 +19,7 @@
 #include <iostream>
 #include <math.h>
 #include <string.h>
+#include <typeinfo>
 
 typedef Wrapper<int> Int;
 typedef Wrapper<char> Char;
@@ -698,7 +699,7 @@ void polish(Stack& stack)
 				case '=':
 					Char& arg = dynamic_cast<Char&> (stack.Pop ());
 					char c = arg;
-					std::cout << atof(c) << std::endl;
+//					std::cout << atof(c) << std::endl;
 					delete &arg;
 					break;
 			}
@@ -744,6 +745,29 @@ void polish(Stack& stack)
 	}
 }
 
+void infix(Stack& stack)
+{
+	StackAsLinkedList infix_exp;
+	while (!stack.IsEmpty() && infix_exp.Count() != 1)
+	{
+		String& arg = dynamic_cast<String&> (stack.Pop());
+		if (arg == "+" || arg == "-" || arg == "*" || arg == "/" || arg == "~" || arg == "^")
+		{
+			//se eh um operador, retiro os dois numeros do topo, concateno e armazeno na nova pilha
+			String& arg1 = dynamic_cast<String&> (stack.Pop());
+			String& arg2 = dynamic_cast<String&> (stack.Pop());
+			arg2.append(arg);
+			infix_exp.Push(*new String (arg2.append(arg1)));
+		}
+		else
+		{
+			//eh um numero, posso empilhar na nova pilha
+			infix_exp.Push(*new String(arg));
+		}
+	}
+	std::cout << infix_exp.Top() << std::endl;
+}
+
 
 void lista1()
 {
@@ -784,8 +808,13 @@ int main()
 //	lista1();
 //	lista2();
 //	lista3();
+//	StackAsLinkedList p;
+//	polish(p);
 	StackAsLinkedList p;
-	polish(p);
+	p.Push(*new String("3"));
+	p.Push(*new String("4"));
+	p.Push(*new String("+"));
+	infix(p);
 
 	return 0;
 }
