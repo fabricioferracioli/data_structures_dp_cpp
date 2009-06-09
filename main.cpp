@@ -751,13 +751,16 @@ void infix(Stack& stack)
 	while (!stack.IsEmpty() && infix_exp.Count() != 1)
 	{
 		String& arg = dynamic_cast<String&> (stack.Pop());
-		if (arg == "+" || arg == "-" || arg == "*" || arg == "/" || arg == "~" || arg == "^")
+		if (arg == *new String("+") || arg == *new String("-") || arg == *new String("*") || arg == *new String("/") || arg == *new String("~") || arg == *new String("^"))
 		{
 			//se eh um operador, retiro os dois numeros do topo, concateno e armazeno na nova pilha
 			String& arg1 = dynamic_cast<String&> (stack.Pop());
 			String& arg2 = dynamic_cast<String&> (stack.Pop());
-			arg2.append(arg);
-			infix_exp.Push(*new String (arg2.append(arg1)));
+			std::cout << arg2;
+			std::cout << ' ' << arg;
+			std::cout << ' ' << arg1;
+
+			//infix_exp.Push(*new String (strcat(strcat(arg2, arg), arg1)));
 		}
 		else
 		{
@@ -808,8 +811,7 @@ int main()
 //	lista1();
 //	lista2();
 //	lista3();
-//	StackAsLinkedList p;
-//	polish(p);
+
 	StackAsLinkedList p;
 	p.Push(*new String("3"));
 	p.Push(*new String("4"));
