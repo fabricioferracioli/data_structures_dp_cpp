@@ -681,6 +681,7 @@ void RPNCalculator (Stack& stack)
 
 void polish(Stack& stack)
 {
+	std::cout << "Exercicio 02" << std::endl;
 	char c;
 	while (std::cin >> c, !std::cin.eof ())
 	{
@@ -743,24 +744,29 @@ void polish(Stack& stack)
 
 		}
 	}
+	std::cout << std::endl;
 }
 
 void infix(Stack& stack)
 {
+	std::cout << "Exercicio 03" << std::endl;
 	StackAsLinkedList infix_exp;
-	while (!stack.IsEmpty() && infix_exp.Count() != 1)
+	while (!stack.IsEmpty())
 	{
 		String& arg = dynamic_cast<String&> (stack.Pop());
 		if (arg == *new String("+") || arg == *new String("-") || arg == *new String("*") || arg == *new String("/") || arg == *new String("~") || arg == *new String("^"))
 		{
 			//se eh um operador, retiro os dois numeros do topo, concateno e armazeno na nova pilha
-			String& arg1 = dynamic_cast<String&> (stack.Pop());
+			String& arg1 = (!infix_exp.IsEmpty()) ? dynamic_cast<String&> (infix_exp.Pop()) : dynamic_cast<String&> (stack.Pop());
 			String& arg2 = dynamic_cast<String&> (stack.Pop());
-			std::cout << arg2;
-			std::cout << ' ' << arg;
-			std::cout << ' ' << arg1;
 
-			//infix_exp.Push(*new String (strcat(strcat(arg2, arg), arg1)));
+			string begin = "(";
+			string operator1 = arg2;
+			string operation = arg;
+			string operator2 = arg1;
+			string end = ")";
+
+			infix_exp.Push(*new String (begin.append(operator1.append(operation.append(operator2.append(end))))));
 		}
 		else
 		{
@@ -769,6 +775,7 @@ void infix(Stack& stack)
 		}
 	}
 	std::cout << infix_exp.Top() << std::endl;
+	std::cout << std::endl;
 }
 
 
@@ -803,6 +810,15 @@ void lista3()
 	//exercicio 1, mantido o nome da funcao contida no livro
 	StackAsLinkedList p;
 	RPNCalculator(p);
+
+	//exercicio 3
+	StackAsLinkedList q;
+	q.Push(*new String("5"));
+	q.Push(*new String("*"));
+	q.Push(*new String("3"));
+	q.Push(*new String("4"));
+	q.Push(*new String("+"));
+	infix(q);
 }
 
 int main()
@@ -811,12 +827,6 @@ int main()
 //	lista1();
 //	lista2();
 //	lista3();
-
-	StackAsLinkedList p;
-	p.Push(*new String("3"));
-	p.Push(*new String("4"));
-	p.Push(*new String("+"));
-	infix(p);
 
 	return 0;
 }
