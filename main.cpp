@@ -699,8 +699,7 @@ void polish(Stack& stack)
 					break;
 				case '=':
 					Char& arg = dynamic_cast<Char&> (stack.Pop ());
-					char c = arg;
-//					std::cout << atof(c) << std::endl;
+					printf("%c", arg - '0');
 					delete &arg;
 					break;
 			}
@@ -811,14 +810,18 @@ void lista3()
 	StackAsLinkedList p;
 	RPNCalculator(p);
 
-	//exercicio 3
+	//exercicio 2
 	StackAsLinkedList q;
-	q.Push(*new String("5"));
-	q.Push(*new String("*"));
-	q.Push(*new String("3"));
-	q.Push(*new String("4"));
-	q.Push(*new String("+"));
-	infix(q);
+	polish(q);
+
+	//exercicio 3
+	StackAsLinkedList r;
+	r.Push(*new String("5"));
+	r.Push(*new String("*"));
+	r.Push(*new String("3"));
+	r.Push(*new String("4"));
+	r.Push(*new String("+"));
+	infix(r);
 }
 
 int main()
@@ -827,6 +830,7 @@ int main()
 //	lista1();
 //	lista2();
 //	lista3();
+
 
 	return 0;
 }
