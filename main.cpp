@@ -15,6 +15,8 @@
 #include "lista3/Stack.h"
 #include "lista3/StackAsArray.h"
 #include "lista3/StackAsLinkedList.h"
+#include "lista3/MultipleStack.h"
+#include "lista3/QueueAsDequeAsArray.h"
 
 #include <iostream>
 #include <math.h>
@@ -777,6 +779,65 @@ void infix(Stack& stack)
 	std::cout << std::endl;
 }
 
+/*void l3ex07()
+{
+    std::cout << "Exercicio 07" << std::endl;
+
+    try
+    {
+        MultipleStack stack(3);
+
+        stack.Push(*new Int(1),0);
+        stack.Push(*new Int(2),0);
+        stack.Push(*new Int(3),0);
+        stack.Pop(0);
+        stack.Push(*new Int(4),0);
+
+        stack.Push(*new Int(1),1);
+        stack.Push(*new Int(2),1);
+        stack.Pop(1);
+        stack.Push(*new Int(3),1);
+
+        stack.Push(*new Int(1),2);
+        stack.Pop(2);
+        stack.Push(*new Int(2),2);
+
+
+        //stack.Push(*new Int(24),24);
+
+        std::cout << stack << std::endl;
+    }
+     catch(exception &e){
+        cerr << "Caught: " << e.what( ) << endl;
+        cerr << "Type: " << typeid( e ).name( ) << endl;
+     }
+}
+
+void l3ex09()
+{
+   std::cout <<"Exercicio 09" << std::endl;
+
+   try
+   {
+        QueueAsDequeAsArray queue(10);
+
+        queue.Enqueue(*new Int(5));
+        queue.Enqueue(*new Int(10));
+        queue.Enqueue(*new Int(15));
+        queue.Enqueue(*new Int(20));
+        queue.Enqueue(*new Int(25));
+
+        queue.Dequeue();
+        queue.Dequeue();
+
+        queue.Enqueue(*new Int(30));
+        std::cout << queue << std::endl << std::endl;
+    }
+    catch(exception &e){
+        cerr << "Caught: " << e.what( ) << std::endl;
+        cerr << "Type: " << typeid( e ).name( ) << std::endl;
+     }
+}*/
 
 void lista1()
 {
