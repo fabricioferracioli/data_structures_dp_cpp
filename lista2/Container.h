@@ -18,6 +18,7 @@
 
 class Container : public virtual Object, public virtual Ownership
 {
+
 protected:
     unsigned int count;
 

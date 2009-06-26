@@ -778,8 +778,8 @@ void infix(Stack& stack)
 	std::cout << infix_exp.Top() << std::endl;
 	std::cout << std::endl;
 }
-
-/*void l3ex07()
+/*
+void l3ex07()
 {
     std::cout << "Exercicio 07" << std::endl;
 
@@ -837,8 +837,8 @@ void l3ex09()
         cerr << "Caught: " << e.what( ) << std::endl;
         cerr << "Type: " << typeid( e ).name( ) << std::endl;
      }
-}*/
-
+}
+*/
 void lista1()
 {
 	std::cout << "Lista de exercicios 01" << std::endl;

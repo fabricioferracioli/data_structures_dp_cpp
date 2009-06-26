@@ -2,7 +2,6 @@
 #define MULTIPLESTACK_H_
 
 #include "StackAsLinkedList.h"
-#include "../lista2/Container.h"
 #include "../lista1/Array.h"
 
 class MultipleStack : public Container
