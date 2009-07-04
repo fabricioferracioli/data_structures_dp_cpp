@@ -32,7 +32,17 @@ class Array
 			delete [] data;
 		}
 
-		Array& operator = (Array const&);
+		Array<T>& operator=(Array const& array)
+		{
+		    length = array.Length();
+		    base = array.Base();
+		    data = new T [length];
+
+		    for(unsigned int i = 0; i < length; i++)
+		    {
+		        data[i] = array.data[i];
+		    }
+		}
 
 		T const* Data () const
 	    {

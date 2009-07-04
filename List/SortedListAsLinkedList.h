@@ -15,6 +15,7 @@ class SortedListAsLinkedList : public virtual SortedList, public virtual ListAsL
 {
 	public:
 		SortedListAsLinkedList ();
+		void Insert (Object&);
 
 };
 

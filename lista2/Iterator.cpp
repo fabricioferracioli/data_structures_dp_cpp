@@ -6,7 +6,3 @@
  */
 
 #include "Iterator.h"
-
-Iterator::~Iterator() {
-	// TODO Auto-generated destructor stub
-}

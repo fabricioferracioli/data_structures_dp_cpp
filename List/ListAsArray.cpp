@@ -132,3 +132,35 @@ void ListAsArray::Withdraw (Position const& arg)
     }
     --count;
 }
+
+ListAsArray::Pos::Pos(ListAsArray const& _list) : list(_list)
+{
+	Reset();
+}
+
+ListAsArray::Pos::Pos(ListAsArray const& _list, unsigned int pos) : list(_list), offset(pos)
+{}
+
+bool ListAsArray::Pos::IsDone() const
+{
+    return offset >= list.Count();
+}
+
+Object& ListAsArray::Pos::operator*()const
+{
+    if(offset < list.Count())
+        return *list.array[offset];
+    else
+        return NullObject::Instance();
+}
+
+void ListAsArray::Pos::operator++()
+{
+    if (offset < list.Count())
+        ++offset;
+}
+
+void ListAsArray::Pos::Reset()
+{
+    offset = 0;
+}

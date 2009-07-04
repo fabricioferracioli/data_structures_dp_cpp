@@ -119,3 +119,9 @@ void ListAsLinkedList::Withdraw (Position const& arg)
     linkedList.Extract (position.element->Datum ());
     --count;
 }
+
+ListAsLinkedList::Pos::Pos(ListAsLinkedList const& _list) : list(_list)
+{}
+
+ListAsLinkedList::Pos::Pos(ListAsLinkedList const& _list, ListElement<Object*> const* pos) : list(_list)
+{}

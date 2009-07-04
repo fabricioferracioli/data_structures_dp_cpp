@@ -6,12 +6,3 @@
  */
 
 #include "OrderedList.h"
-
-OrderedList::OrderedList() {
-	// TODO Auto-generated constructor stub
-
-}
-
-OrderedList::~OrderedList() {
-	// TODO Auto-generated destructor stub
-}

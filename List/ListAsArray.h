@@ -39,13 +39,15 @@ class ListAsArray::Pos : public Position
 		ListAsArray const& list;
 		unsigned int offset;
 	public:
-		friend class ListAsArray;
-		friend class SortedListAsArray;
-
+		Pos(ListAsArray const&);
+		Pos(ListAsArray const&, unsigned int);
 		virtual void Reset();
 		virtual bool IsDone() const;
 		virtual Object& operator*() const;
 		virtual void operator++();
+
+		friend class ListAsArray;
+		friend class SortedListAsArray;
 };
 
 #endif /* LISTASARRAY_H_ */

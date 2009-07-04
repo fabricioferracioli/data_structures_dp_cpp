@@ -20,6 +20,15 @@ class ListAsLinkedList : public virtual OrderedList
 		class Pos;
 	public:
 		ListAsLinkedList ();
+		void Insert (Object&);
+		Object& operator [] (unsigned int) const;
+		bool IsMember (Object const&) const;
+		Object& Find (Object const& object) const;
+		void Withdraw (Object& object);
+		Position& FindPosition (Object const& object) const;
+		Object& operator [] (Position const& arg) const;
+		void InsertAfter (Position const& arg, Object& object);
+		void Withdraw (Position const& arg);
 
 		friend class Pos;
 };
@@ -29,6 +38,12 @@ class ListAsLinkedList::Pos : public Position
     ListAsLinkedList const& list;
     ListElement<Object*> const* element;
 	public:
+		Pos(ListAsLinkedList const&);
+		Pos(ListAsLinkedList const&, ListElement<Object*> const*);
+		virtual void Reset();
+		virtual bool IsDone() const;
+		virtual Object& operator*() const;
+		virtual void operator++();
 		friend class ListAsLinkedList;
 };
 

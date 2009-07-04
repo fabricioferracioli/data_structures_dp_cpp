@@ -16,6 +16,11 @@ class SortedListAsArray : public virtual SortedList, public virtual ListAsArray
     unsigned int FindOffset (Object const&) const;
 	public:
 		SortedListAsArray (unsigned int);
+		void Insert (Object&);
+		Object& Find (Object const&) const;
+		Position& FindPosition (Object const&) const;
+		void Withdraw (Object&);
+
 };
 
 #endif /* SORTEDLISTASARRAY_H_ */
