@@ -14,6 +14,7 @@
 #include "Visitor.h"
 #include "NullIterator.h"
 #include "PuttingVisitor.h"
+#include "../Visitor/HashingVisitor.h"
 #include <typeinfo>
 
 class Container : public virtual Object, public virtual Ownership

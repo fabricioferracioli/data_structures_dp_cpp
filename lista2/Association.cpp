@@ -57,5 +57,5 @@ void Association::Put (std::ostream& s) const
 
 HashValue Association::Hash() const
 {
-	return 0;
+	return key->Hash ();
 }

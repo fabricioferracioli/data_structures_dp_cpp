@@ -75,7 +75,8 @@ void Wrapper<T>::Put (std::ostream& s) const
 template <class T>
 HashValue Wrapper<T>::Hash () const
 {
-	return NULL;
+	MyHash mHash;
+	return mHash.Hash (datum);
 }
 
 #endif /* WRAPPER_H_ */

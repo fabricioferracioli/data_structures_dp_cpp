@@ -25,7 +25,7 @@ HashValue MyHash::Hash (int i)
 HashValue MyHash::Hash (double d)
 {
 	if (d == 0)
-	return 0;
+		return 0;
 	else
 	{
 		int exponent;
@@ -40,7 +40,7 @@ HashValue MyHash::Hash (std::string const& s)
 {
 	HashValue result = 0;
 	for (unsigned int i = 0; s [i] != 0; ++i)
-	result = (result & mask) ^ (result << shift) ^ s [i];
+		result = (result & mask) ^ (result << shift) ^ s [i];
 	return result;
 }
 

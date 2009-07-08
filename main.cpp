@@ -7,7 +7,8 @@
 #include "lista1/LinkedListSentinel.h"
 #include "lista1/RowVector.h"
 #include "lista1/ColumnVector.h"
-#include "lista2/Wrapper.h"
+//Neste caso eh para nao dar definicao multipla do Compare
+//#include "lista2/Wrapper.h"
 #include "lista2/BagAsArray.h"
 #include "lista2/BagAsLinkedList.h"
 #include "lista2/Association.h"
@@ -17,6 +18,8 @@
 #include "lista3/StackAsLinkedList.h"
 #include "lista3/MultipleStack.h"
 #include "lista3/QueueAsDequeAsArray.h"
+#include "Hash/HashTable.h"
+#include "Counter/Counter.h"
 
 #include <iostream>
 #include <math.h>
@@ -883,6 +886,24 @@ void lista3()
 	r.Push(*new String("4"));
 	r.Push(*new String("+"));
 	infix(r);
+}
+
+void CountWords (HashTable& table)
+{
+    std::string word;
+    while (cin >> word, !cin.eof ())
+    {
+		Object& obj = table.Find (Association (*new String (word)));
+		if (obj.IsNull ())
+			table.Insert (*new Association (*new String (word), *new Counter (1)));
+		else
+		{
+			Association& assoc = dynamic_cast<Association&> (obj);
+			Counter& i = dynamic_cast<Counter&> (assoc.Value ());
+			++i;
+		}
+    }
+    std::cout << table << std::endl;
 }
 
 int main()

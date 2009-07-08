@@ -27,7 +27,10 @@ bool Container::IsFull() const
 
 HashValue Container::Hash() const
 {
-	return 0;
+	MyHash mHash;
+	HashingVisitor visitor (mHash.Hash (typeid (*this).name ()));
+	Accept (visitor);
+	return visitor.Value ();
 }
 
 Iterator& Container::NewIterator () const
