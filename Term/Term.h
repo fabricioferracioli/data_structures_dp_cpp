@@ -25,9 +25,9 @@ class Term : public Object
 {
     double coefficient;
     unsigned int exponent;
+    int CompareTo (Object const&) const;
 	public:
 		Term (double, unsigned int);
-		int CompareTo (Object const&) const;
 		void Differentiate ();
 		unsigned int Coefficient () const;
 		unsigned int Exponent () const;

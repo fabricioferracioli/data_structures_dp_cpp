@@ -21,6 +21,5 @@ int Object::Compare (Object const& object) const
     	return 1;
 }
 
-Object::~Object() {
-	// TODO Auto-generated destructor stub
-}
+Object::~Object()
+{}

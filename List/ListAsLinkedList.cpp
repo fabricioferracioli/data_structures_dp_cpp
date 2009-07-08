@@ -102,6 +102,18 @@ void ListAsLinkedList::InsertAfter (Position const& arg, Object& object)
     ++count;
 }
 
+void ListAsLinkedList::InsertBefore (Position const& arg, Object& object)
+{
+	Pos const& position = dynamic_cast<Pos const&> (arg);
+
+	if (&position.list != this || position.element == 0)
+	{
+		throw std::invalid_argument("invalid position");
+	}
+	linkedList.InsertBefore(position.element, &object);
+	++count;
+}
+
 void ListAsLinkedList::Withdraw (Position const& arg)
 {
     Pos const& position = dynamic_cast<Pos const&> (arg);
@@ -125,3 +137,19 @@ ListAsLinkedList::Pos::Pos(ListAsLinkedList const& _list) : list(_list)
 
 ListAsLinkedList::Pos::Pos(ListAsLinkedList const& _list, ListElement<Object*> const* pos) : list(_list)
 {}
+
+void ListAsLinkedList::Pos::Reset()
+{}
+
+void ListAsLinkedList::Pos::operator++()
+{}
+
+bool ListAsLinkedList::Pos::IsDone() const
+{
+	return false;
+}
+
+Object& ListAsLinkedList::Pos::operator*() const
+{
+	return NullObject::Instance();
+}

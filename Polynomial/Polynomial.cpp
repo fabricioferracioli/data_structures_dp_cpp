@@ -65,3 +65,14 @@ Polynomial operator + (Polynomial const& arg1, Polynomial const& arg2)
     delete &pos2;
     return result;
 }
+
+int Polynomial::CompareTo (Object const& obj) const
+{
+	return 0;
+}
+
+void Polynomial::Purge ()
+{}
+
+void Polynomial::Accept (Visitor&) const
+{}

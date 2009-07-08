@@ -30,3 +30,9 @@ void SortedListAsLinkedList::Insert (Object& object)
 
     ++count;
 }
+
+void SortedListAsLinkedList::Purge ()
+{}
+
+void SortedListAsLinkedList::Accept (Visitor&) const
+{}

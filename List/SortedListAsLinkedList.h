@@ -17,6 +17,21 @@ class SortedListAsLinkedList : public virtual SortedList, public virtual ListAsL
 		SortedListAsLinkedList ();
 		void Insert (Object&);
 
+		/* listaslinkedlist */
+		/*void Insert (Object&);
+		Object& operator [] (unsigned int) const;
+		bool IsMember (Object const&) const;
+		Object& Find (Object const&) const;
+		void Withdraw (Object&);
+		Position& FindPosition (Object const&) const;
+		Object& operator [] (Position const&) const;
+		void InsertAfter (Position const&, Object&);
+		void InsertBefore (Position const&, Object&);
+		void Withdraw (Position const&);*/
+
+		void Purge ();
+		void Accept (Visitor&) const;
+
 };
 
 #endif /* SORTEDLISTASLINKEDLIST_H_ */

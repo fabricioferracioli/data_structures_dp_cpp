@@ -13,7 +13,7 @@
 class Iterator
 {
 public:
-    virtual ~Iterator ();
+    virtual ~Iterator (){};
     virtual void Reset () = 0;
     virtual bool IsDone () const = 0;
     virtual Object& operator * () const = 0;

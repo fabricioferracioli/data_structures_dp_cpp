@@ -13,23 +13,33 @@
 
 class Polynomial : public ListAsLinkedList
 {
+	int CompareTo (Object const&) const;
 	public:
 		void Differentiate ();
 		friend Polynomial operator + (Polynomial const&, Polynomial const&);
 
-		virtual int CompareTo(const Object&) const;
-		virtual void Purge();
-		virtual void Accept(Visitor &) const;
-		virtual void Insert(Object &);
-		virtual void Withdraw(Object &);
-		virtual Object& Find(const Object&) const;
-		virtual bool IsMember(const Object&) const;
-		virtual Object& operator[](unsigned int) const;
-		virtual Object& operator[](const Position&) const;
-		virtual Position& FindPosition(const Object&) const;
-		virtual void Withdraw(const Position&);
-		virtual void InsertAfter(const Position&, Object&);
-		virtual void InsertBefore(const Position&, Object&);
+		/* listaslinkedlist */
+//		Object& operator [] (unsigned int) const;
+//		bool IsMember (Object const&) const;
+//		Object& Find (Object const&) const;
+//		void Withdraw (Object&);
+//		Position& FindPosition (Object const&) const;
+//		Object& operator [] (Position const&) const;
+//		void InsertAfter (Position const&, Object& );
+//		void InsertBefore (Position const&, Object&);
+//		void Withdraw (Position const&);
+
+		/* container */
+//		unsigned int Count () const;
+//		bool IsEmpty () const;
+//		bool IsFull () const;
+//		HashValue Hash () const;
+//		void Put (std::ostream&) const;
+//		Iterator& NewIterator () const;
+
+		void Purge ();
+		void Accept (Visitor&) const;
+
 };
 
 #endif /* POLYNOMIAL_H_ */

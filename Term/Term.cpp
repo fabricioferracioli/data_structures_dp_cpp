@@ -52,3 +52,11 @@ Term operator + (Term const& arg1, Term const& arg2)
     }
     return Term (arg1.coefficient + arg2.coefficient,	arg1.exponent);
 }
+
+HashValue Term::Hash() const
+{
+	return 0;
+}
+
+void Term::Put(std::ostream &) const
+{}
