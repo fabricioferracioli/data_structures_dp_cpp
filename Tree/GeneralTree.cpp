@@ -4,7 +4,7 @@
  *  Created on: 10/07/2009
  *      Author: fabricio
  */
-/*
+
 #include "GeneralTree.h"
 
 GeneralTree::GeneralTree (Object& _key) : key (&_key), degree (0), list ()
@@ -63,4 +63,3 @@ GeneralTree& GeneralTree::DetachSubtree (GeneralTree& t)
     --degree;
     return t;
 }
-*/

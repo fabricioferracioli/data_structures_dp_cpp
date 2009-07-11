@@ -4,7 +4,7 @@
  *  Created on: 10/07/2009
  *      Author: fabricio
  */
-/*
+
 #ifndef GENERALTREE_H_
 #define GENERALTREE_H_
 
@@ -26,8 +26,6 @@ public:
     virtual void AttachSubtree (GeneralTree&);
     virtual GeneralTree& DetachSubtree (GeneralTree&);
     void Purge ();
-
-    virtual int Height() const;
 };
 
 
