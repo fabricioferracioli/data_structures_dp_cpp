@@ -56,3 +56,11 @@ Object& QueueAsLinkedList::Dequeue ()
     --count;
     return result;
 }
+
+void QueueAsLinkedList::Accept(Visitor &) const
+{}
+
+int QueueAsLinkedList::CompareTo(const Object &) const
+{
+	return 0;
+}

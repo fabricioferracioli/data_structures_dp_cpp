@@ -22,6 +22,8 @@ class QueueAsLinkedList : public virtual Queue
 		void Enqueue (Object&);
 		Object& Dequeue ();
 		~QueueAsLinkedList ();
+		void Accept(Visitor &) const;
+		int CompareTo(const Object &) const;
 };
 
 #endif /* QUEUEASLINKEDLIST_H_ */

@@ -22,8 +22,12 @@ class DequeAsLinkedList : public Deque, public QueueAsLinkedList
 		void EnqueueHead (Object&);
 		Object& DequeueTail ();
 
-		virtual void Enqueue(Object&) = 0;
-		virtual Object& Dequeue() = 0;
+		virtual void Enqueue(Object&);
+		virtual Object& Dequeue();
+		void Accept(Visitor &) const;
+		int CompareTo(const Object &) const;
+
+		void Purge ();
 };
 
 #endif /* DEQUEASLINKEDLIST_H_ */

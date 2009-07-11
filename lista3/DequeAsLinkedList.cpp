@@ -48,3 +48,25 @@ Object& DequeAsLinkedList::DequeueTail ()
     --count;
     return result;
 }
+
+void DequeAsLinkedList::Enqueue (Object& object)
+{
+	EnqueueTail (object);
+}
+
+Object& DequeAsLinkedList::Dequeue ()
+{
+	return DequeueHead ();
+}
+
+void DequeAsLinkedList::Purge()
+{}
+
+void DequeAsLinkedList::Accept(Visitor &) const
+{}
+
+
+int DequeAsLinkedList::CompareTo(const Object &) const
+{
+	return 0;
+}
