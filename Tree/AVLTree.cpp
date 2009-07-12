@@ -15,6 +15,11 @@ int AVLTree::Height () const
 	return height;
 }
 
+int AVLTree::Max(int const leftNodeHeight, int const rightNodeHeight) const
+{
+	return leftNodeHeight > rightNodeHeight ? leftNodeHeight : rightNodeHeight;
+}
+
 void AVLTree::AdjustHeight ()
 {
     if (IsEmpty ())
@@ -29,6 +34,16 @@ int AVLTree::BalanceFactor () const
     	return 0;
     else
     	return left->Height () - right->Height ();
+}
+
+AVLTree& AVLTree::Left () const
+{
+	return dynamic_cast<AVLTree&> (BST::Left ());
+}
+
+AVLTree& AVLTree::Right () const
+{
+	return dynamic_cast<AVLTree&> (BST::Right ());
 }
 
 void AVLTree::LLRotation ()
@@ -50,6 +65,25 @@ void AVLTree::LLRotation ()
     AdjustHeight ();
 }
 
+void AVLTree::RRRotation ()
+{
+    if (IsEmpty ())
+    	throw std::domain_error ("invalid rotation");
+
+    BinaryTree* const tmp = left;
+    left = right;
+    right = Left ().right;
+    Left ().right = Left ().left;
+    Left ().left = tmp;
+
+    Object* const tmpObj = key;
+    key = Left ().key;
+    Left ().key = tmpObj;
+
+    Left ().AdjustHeight ();
+    AdjustHeight ();
+}
+
 void AVLTree::LRRotation ()
 {
     if (IsEmpty ())
@@ -57,6 +91,15 @@ void AVLTree::LRRotation ()
 
     Left ().RRRotation ();
     LLRotation ();
+}
+
+void AVLTree::RLRotation ()
+{
+    if (IsEmpty ())
+    	throw std::domain_error ("invalid rotation");
+
+    Right ().LLRotation ();
+    RRRotation ();
 }
 
 void AVLTree::Balance ()
@@ -67,16 +110,16 @@ void AVLTree::Balance ()
 		if (BalanceFactor () > 0)
 		{
 			if (Left ().BalanceFactor () > 0)
-			LLRotation ();
+				LLRotation ();
 			else
-			LRRotation ();
+				LRRotation ();
 		}
 		else
 		{
 			if (Right ().BalanceFactor () < 0)
-			RRRotation ();
+				RRRotation ();
 			else
-			RLRotation ();
+				RLRotation ();
 		}
     }
 }

@@ -24,6 +24,7 @@ protected:
     void AttachKey (Object&);
     Object& DetachKey ();
     void Balance ();
+    int Max(int const, int const) const;
 public:
     AVLTree ();
 
