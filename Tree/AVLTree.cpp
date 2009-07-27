@@ -48,58 +48,58 @@ AVLTree& AVLTree::Right () const
 
 void AVLTree::LLRotation ()
 {
-    if (IsEmpty ())
-    	throw std::domain_error ("invalid rotation");
+	if (IsEmpty ())
+		throw std::domain_error ("invalid rotation");
 
-    BinaryTree* const tmp = right;
-    right = left;
-    left = Right ().left;
-    Right ().left = Right ().right;
-    Right ().right = tmp;
+	BinaryTree* const tmp = right;
+	right = left;
+	left = Right ().left;
+	Right ().left = Right ().right;
+	Right ().right = tmp;
 
-    Object* const tmpObj = key;
-    key = Right ().key;
-    Right ().key = tmpObj;
+	Object* const tmpObj = key;
+	key = Right ().key;
+	Right ().key = tmpObj;
 
-    Right ().AdjustHeight ();
-    AdjustHeight ();
+	Right ().AdjustHeight ();
+	AdjustHeight ();
 }
 
 void AVLTree::RRRotation ()
 {
-    if (IsEmpty ())
-    	throw std::domain_error ("invalid rotation");
+	if (IsEmpty ())
+		throw std::domain_error ("invalid rotation");
 
-    BinaryTree* const tmp = left;
-    left = right;
-    right = Left ().right;
-    Left ().right = Left ().left;
-    Left ().left = tmp;
+	BinaryTree* const tmp = left;
+	left = right;
+	right = Left ().right;
+	Left ().right = Left ().left;
+	Left ().left = tmp;
 
-    Object* const tmpObj = key;
-    key = Left ().key;
-    Left ().key = tmpObj;
+	Object* const tmpObj = key;
+	key = Left ().key;
+	Left ().key = tmpObj;
 
-    Left ().AdjustHeight ();
-    AdjustHeight ();
+	Left ().AdjustHeight ();
+	AdjustHeight ();
 }
 
 void AVLTree::LRRotation ()
 {
-    if (IsEmpty ())
-    	throw std::domain_error ("invalid rotation");
+	if (IsEmpty ())
+		throw std::domain_error ("invalid rotation");
 
-    Left ().RRRotation ();
-    LLRotation ();
+	Left ().RRRotation ();
+	LLRotation ();
 }
 
 void AVLTree::RLRotation ()
 {
-    if (IsEmpty ())
-    	throw std::domain_error ("invalid rotation");
+	if (IsEmpty ())
+	    	throw std::domain_error ("invalid rotation");
 
-    Right ().LLRotation ();
-    RRRotation ();
+	Right ().LLRotation ();
+	RRRotation ();
 }
 
 void AVLTree::Balance ()

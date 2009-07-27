@@ -40,12 +40,12 @@ Object& BST::Find (Object const& object) const
 
 Object& BST::FindMin () const
 {
-    if (IsEmpty ())
-    	return NullObject::Instance ();
-    else if (Left ().IsEmpty ())
-    	return *key;
-    else
-    	return Left ().FindMin();
+	if (IsEmpty ())
+		return NullObject::Instance ();
+	else if (Left ().IsEmpty ())
+		return *key;
+	else
+		return Left ().FindMin();
 }
 
 void BST::Insert (Object& object)
@@ -79,13 +79,13 @@ void BST::Balance ()
 
 void BST::Withdraw (Object& object)
 {
-    if (IsEmpty ())
-    	throw std::invalid_argument ("object not found");
+	if (IsEmpty ())
+		throw std::invalid_argument ("object not found");
 
-    int const diff = object.Compare (*key);
+	int const diff = object.Compare (*key);
 
-    if (diff == 0)
-    {
+	if (diff == 0)
+	{
 		if (!Left ().IsEmpty ())
 		{
 			Object& max = Left ().FindMax ();
@@ -100,18 +100,19 @@ void BST::Withdraw (Object& object)
 		}
 		else
 			DetachKey ();
-    }
-    else if (diff < 0)
-    	Left ().Withdraw (object);
-    else
-    	Right ().Withdraw (object);
-    Balance ();
+	}
+	else if (diff < 0)
+		Left ().Withdraw (object);
+	else
+		Right ().Withdraw (object);
+
+	Balance ();
 }
 
 Object& BST::DetachKey ()
 {
-    if (!IsLeaf ())
-    	throw std::domain_error ("invalid operation");
+    if(!Right().IsEmpty() || !Left().IsEmpty())
+        throw std::domain_error ("invalid operation");
 
     Object& result = *key;
     delete left;
@@ -122,12 +123,33 @@ Object& BST::DetachKey ()
     return result;
 }
 
-bool BST::IsMember(const Object&) const
+bool BST::IsMember (Object const& object) const
 {
-	return false;
+    if (IsEmpty ())
+        return false;
+
+    int const diff = object.Compare (*key);
+
+    if (diff == 0)
+    {
+        return true;
+    }
+    else if (diff < 0)
+    {
+        return Left ().IsMember (object);
+    }
+    else
+    {
+        return Right ().IsMember (object);
+    }
 }
 
 Object& BST::FindMax () const
 {
-	return NullObject::Instance ();
+	if (IsEmpty ())
+		return NullObject::Instance ();
+	else if (Right ().IsEmpty ())
+		return *key;
+	else
+		return Right ().FindMax();
 }

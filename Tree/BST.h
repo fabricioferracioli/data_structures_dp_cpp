@@ -27,9 +27,7 @@ public:
     Object& Find (Object const& object) const;
     void Insert (Object& object);
     void Withdraw (Object& object);
-    bool IsMember (Object const&);
     bool IsMember(const Object&) const;
-    // ...
 };
 
 #endif /* BST_H_ */

@@ -20,6 +20,11 @@
 #include "lista3/QueueAsDequeAsArray.h"
 #include "Hash/HashTable.h"
 #include "Counter/Counter.h"
+#include "Tree/AVLTree.h"
+#include "Visitor/TreeVisitor.h"
+#include "Visitor/PrePostVisitor/InOrder.h"
+#include "Visitor/PrePostVisitor/PostOrder.h"
+#include "Visitor/PrePostVisitor/PreOrder.h"
 
 #include <iostream>
 #include <math.h>
@@ -906,12 +911,143 @@ void CountWords (HashTable& table)
     std::cout << table << std::endl;
 }
 
+void TesteBinaryTree()
+{
+	try
+	{
+		BinaryTree tree(*new Int(4));
+		std::cout << tree << std::endl;
+
+		//insere filhos do Nodo raiz
+		tree.AttachLeft( *new BinaryTree(*new Int(5)));
+		tree.AttachRight(*new BinaryTree(*new Int(2)));
+
+		//insere filhos do Nodo com chave 2
+		tree.Left().AttachLeft ( *new BinaryTree(*new Int(6)));
+		tree.Left().AttachRight( *new BinaryTree(*new Int(7)));
+
+		//insere filhos do Nodo com chave 5
+		tree.Right().AttachLeft( *new BinaryTree(*new Int(8)));
+		tree.Right().AttachRight(*new BinaryTree(*new Int(1)));
+
+		//impressao dos valores da arvore
+		//cout<<endl<<tree<<endl;
+
+		//teste De percursos em Arvore
+		//PuttingVisitor v(std::cout);
+		TreeVisitor v;
+		std::cout << "Percurso em PreOrdem" << std::endl;
+		tree.DepthFirstTraversal (*new PreOrder (v));
+		std::cout << std::endl;
+
+		std::cout << "Percurso em Ordem" << std::endl;
+		tree.DepthFirstTraversal (*new InOrder (v));
+		std::cout << std::endl;
+
+		std::cout << "Percurso em PosOrdem" << std::endl;
+		tree.DepthFirstTraversal (*new PostOrder (v));
+		std::cout << std::endl;
+
+		//Teste do percurso em Nivel
+		//cout<<"Percurso em Nivel"<<endl;
+		//tree.BreadthFirstTraversal (*new TreeVisitor());
+
+		//Uso de Iterator
+		/*
+		BinaryTree tree;
+		Iterator& i = tree.NewIterator;
+		while (!i.IsDone ()) {
+			cout << *i << endl;
+			++i;
+		}
+		delete &i;
+		*/
+	}
+	catch(exception &e)
+	{
+		cerr << "Caught: " << e.what( ) << endl;
+		cerr << "Type: " << typeid( e ).name( ) << endl;
+	}
+}
+
+void TesteAvl()
+{
+   try
+   {
+       //cria arvore AVL
+       AVLTree tree;
+
+       //cria objetos a serem inseridos
+       Object &ob1 = *new Int(1);
+       Object &ob2 = *new Int(2);
+       Object &ob3 = *new Int(3);
+       Object &ob4 = *new Int(4);
+       Object &ob5 = *new Int(5);
+       Object &ob6 = *new Int(6);
+       Object &ob7 = *new Int(7);
+
+       //insere elementos
+       // na ordem de chaves: 4,2,6,1,3,5,7
+       /*
+       tree.Insert(ob4);
+       tree.Insert(ob2);
+       tree.Insert(ob6);
+       tree.Insert(ob1);
+       tree.Insert(ob3);
+       tree.Insert(ob5);
+       tree.Insert(ob7);
+        */
+
+       //insere elementos
+       // na ordem de chaves: 4,2,1,6,7,5,3
+       tree.Insert(ob4);
+       tree.Insert(ob2);
+       tree.Insert(ob1);
+       tree.Insert(ob6);
+       tree.Insert(ob7);
+       tree.Insert(ob5);
+       tree.Insert(ob3);
+
+       //teste de remocao
+       tree.Withdraw(ob7);
+       tree.Withdraw(ob5);
+       tree.Withdraw(ob1);
+       tree.Withdraw(ob6);
+
+       //mostra arvore
+       std::cout << "[*] Arvore: " << std::endl;
+       std::cout << tree << std::endl;
+
+       //acha maior elemento
+       std::cout << "Max: " << tree.FindMax() << std::endl;
+
+       //acha menor elemento
+       std::cout << "Min: " << tree.FindMin() << std::endl;
+
+       //verifica se ob7 esta na arvore
+       if(tree.IsMember(ob7))
+            std::cout << "ob7 esta na arvore ... " << std::endl;
+       else
+            std::cout << "ob7 nao esta na arvore ... " << std::endl;
+
+       std::cout << "Find ob4: " << tree.Find(ob4) << std::endl;
+
+    }
+    catch(exception &e){
+        cerr << "Caught: " << e.what( ) << endl;
+        cerr << "Type: " << typeid( e ).name( ) << endl;
+    }
+
+}
+
 int main()
 {
 	std::cout << "Main" << std::endl;
 //	lista1();
 //	lista2();
 //	lista3();
+//	TesteBinaryTree();
+	TesteAvl();
 
 
 	return 0;
