@@ -1002,17 +1002,22 @@ void TesteAvl()
        // na ordem de chaves: 4,2,1,6,7,5,3
        tree.Insert(ob4);
        tree.Insert(ob2);
-       tree.Insert(ob1);
+       tree.Insert(ob1); //rotacao direita (4)
        tree.Insert(ob6);
-       tree.Insert(ob7);
-       tree.Insert(ob5);
+       tree.Insert(ob7); //rotacao esquerda (4)
+       tree.Insert(ob5); //rotacao direita (6) esquerda (2)
        tree.Insert(ob3);
+
+       TreeVisitor v;
+	   std::cout << "Percurso em Ordem" << std::endl;
+	   tree.DepthFirstTraversal (*new InOrder (v));
+	   std::cout << std::endl;
 
        //teste de remocao
        tree.Withdraw(ob7);
        tree.Withdraw(ob5);
        tree.Withdraw(ob1);
-       tree.Withdraw(ob6);
+       tree.Withdraw(ob6); //rotacao esquerda (2) direita (4)
 
        //mostra arvore
        std::cout << "[*] Arvore: " << std::endl;
@@ -1031,6 +1036,10 @@ void TesteAvl()
             std::cout << "ob7 nao esta na arvore ... " << std::endl;
 
        std::cout << "Find ob4: " << tree.Find(ob4) << std::endl;
+
+	   std::cout << "Percurso em Ordem" << std::endl;
+	   tree.DepthFirstTraversal (*new InOrder (v));
+	   std::cout << std::endl;
 
     }
     catch(exception &e){
